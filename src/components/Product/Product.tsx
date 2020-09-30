@@ -5,8 +5,8 @@ import { FaShoppingCart } from "react-icons/fa";
 
 import { ProductModel } from "../../models/product";
 
-import { CartState } from "../../store/reducer";
-import * as actionCreators from "../../store/actionCreators";
+import { RootState } from "../../store/store";
+import * as actionCreators from "../../store/actions/cartActions/cartActionCreators";
 
 import "./Product.scss";
 
@@ -17,7 +17,7 @@ interface ProductProps {
 const Product: React.FC<ProductProps> = ({ product }) => {
   const dispatch = useDispatch();
 
-  const cart = useSelector((state: CartState) => state.cart);
+  const cart = useSelector((state: RootState) => state.cartState.cart);
 
   const checkIsInCart = useCallback(() => {
     if (cart.find((item) => item.id === product.id)) {

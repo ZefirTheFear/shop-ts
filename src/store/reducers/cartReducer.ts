@@ -1,9 +1,10 @@
 import cloneDeep from "clone-deep";
 
-import { CartItemModel } from "../models/cartItem";
-import * as actionTypes from "./actionTypes";
+import { CartItemModel } from "../../models/cartItem";
 
-export interface CartState {
+import * as cartActionTypes from "../actions/cartActions/cartActionTypes";
+
+interface CartState {
   isCartShown: boolean;
   cart: CartItemModel[];
 }
@@ -13,9 +14,9 @@ const initialState: CartState = {
   cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")!) : []
 };
 
-export default (state = initialState, action: actionTypes.ActionType) => {
+export default (state = initialState, action: cartActionTypes.CartActionType) => {
   switch (action.type) {
-    case actionTypes.ADD_PRODUCT_TO_CART:
+    case cartActionTypes.ADD_PRODUCT_TO_CART:
       const newCart = cloneDeep(state.cart);
       // const cartItem = cloneDeep(action.payload.product) as CartItem;
       // cartItem.quantity = 1;
@@ -27,7 +28,7 @@ export default (state = initialState, action: actionTypes.ActionType) => {
         cart: newCart
       };
 
-    case actionTypes.REMOVE_PRODUCT_FROM_CART: {
+    case cartActionTypes.REMOVE_PRODUCT_FROM_CART: {
       let newCart = cloneDeep(state.cart);
       newCart = newCart.filter((item) => item.id !== action.payload.id);
       localStorage.setItem("cart", JSON.stringify(newCart));
@@ -37,7 +38,7 @@ export default (state = initialState, action: actionTypes.ActionType) => {
       };
     }
 
-    case actionTypes.INCREMENT_QUANTITY: {
+    case cartActionTypes.INCREMENT_QUANTITY: {
       let newCart = cloneDeep(state.cart);
       newCart.find((item) => item.id === action.payload.id)!.quantity++;
       localStorage.setItem("cart", JSON.stringify(newCart));
@@ -47,7 +48,7 @@ export default (state = initialState, action: actionTypes.ActionType) => {
       };
     }
 
-    case actionTypes.DECREMENT_QUANTITY: {
+    case cartActionTypes.DECREMENT_QUANTITY: {
       let newCart = cloneDeep(state.cart);
       let quantity = newCart.find((item) => item.id === action.payload.id)!.quantity;
       if (quantity > 1) {
@@ -62,7 +63,7 @@ export default (state = initialState, action: actionTypes.ActionType) => {
       };
     }
 
-    case actionTypes.CLEAR_CART:
+    case cartActionTypes.CLEAR_CART:
       localStorage.setItem("cart", JSON.stringify([]));
       return {
         ...state,
@@ -70,13 +71,13 @@ export default (state = initialState, action: actionTypes.ActionType) => {
         isCartShown: false
       };
 
-    case actionTypes.SHOW_CART:
+    case cartActionTypes.SHOW_CART:
       return {
         ...state,
         isCartShown: true
       };
 
-    case actionTypes.HIDE_CART:
+    case cartActionTypes.HIDE_CART:
       return {
         ...state,
         isCartShown: false

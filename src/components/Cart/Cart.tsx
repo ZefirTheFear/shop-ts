@@ -6,16 +6,16 @@ import { FaRegWindowClose } from "react-icons/fa";
 import CartItem from "../CartItem/CartItem";
 import Modal from "../Modal/Modal";
 
-import { CartState } from "../../store/reducer";
-import * as actionCreators from "../../store/actionCreators";
+import { RootState } from "../../store/store";
+import * as cartActionCreators from "../../store/actions/cartActions/cartActionCreators";
 
 import "./Cart.scss";
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
 
-  const cart = useSelector((state: CartState) => state.cart);
-  const isCartShown = useSelector((state: CartState) => state.isCartShown);
+  const cart = useSelector((state: RootState) => state.cartState.cart);
+  const isCartShown = useSelector((state: RootState) => state.cartState.isCartShown);
 
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -41,8 +41,8 @@ const Cart: React.FC = () => {
 
   const closeModal = useCallback(() => {
     setIsModalOpen(false);
-    dispatch(actionCreators.hideCart());
-    dispatch(actionCreators.clearCart());
+    dispatch(cartActionCreators.hideCart());
+    dispatch(cartActionCreators.clearCart());
     setIsFormOpen(false);
     setName("");
     setPhone("");
@@ -57,11 +57,11 @@ const Cart: React.FC = () => {
   }, []);
 
   const hideCart = useCallback(() => {
-    dispatch(actionCreators.hideCart());
+    dispatch(cartActionCreators.hideCart());
   }, [dispatch]);
 
   const clearCart = useCallback(() => {
-    dispatch(actionCreators.clearCart());
+    dispatch(cartActionCreators.clearCart());
   }, [dispatch]);
 
   return (

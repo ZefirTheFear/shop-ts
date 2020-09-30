@@ -6,7 +6,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 import { CartItemModel } from "../../models/cartItem";
 
-import * as actionCreators from "../../store/actionCreators";
+import * as cartActionCreators from "../../store/actions/cartActions/cartActionCreators";
 
 import "./CartItem.scss";
 
@@ -18,15 +18,15 @@ const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   const dispatch = useDispatch();
 
   const removeProductFromCart = useCallback(() => {
-    dispatch(actionCreators.removeProductFromCart(cartItem.id));
+    dispatch(cartActionCreators.removeProductFromCart(cartItem.id));
   }, [cartItem.id, dispatch]);
 
   const incrementQuantity = useCallback(() => {
-    dispatch(actionCreators.incrementQuantity(cartItem.id));
+    dispatch(cartActionCreators.incrementQuantity(cartItem.id));
   }, [cartItem.id, dispatch]);
 
   const decrementQuantity = useCallback(() => {
-    dispatch(actionCreators.decrementQuantity(cartItem.id));
+    dispatch(cartActionCreators.decrementQuantity(cartItem.id));
   }, [cartItem.id, dispatch]);
 
   return (

@@ -1,11 +1,16 @@
 import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
+
+import * as scrollActionCreators from "../../store/actions/scrollActions/scrollActionCreators";
 
 import "./Hero.scss";
 
 const Hero: React.FC = () => {
+  const dispatch = useDispatch();
+
   const scrollToProducts = useCallback(() => {
-    document.querySelector(".products")?.scrollIntoView({ behavior: "smooth" });
-  }, []);
+    dispatch(scrollActionCreators.scrollToProducts());
+  }, [dispatch]);
 
   return (
     <header className="hero">

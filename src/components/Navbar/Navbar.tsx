@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { FaCartPlus } from "react-icons/fa";
 
-import { CartState } from "../../store/reducer";
-import * as actionCreators from "../../store/actionCreators";
+import { RootState } from "../../store/store";
+import * as cartActionCreators from "../../store/actions/cartActions/cartActionCreators";
 
 import logo from "../../images/logo.svg";
 
@@ -13,10 +13,10 @@ import "./Navbar.scss";
 const Navbar: React.FC = () => {
   const dispatch = useDispatch();
 
-  const cart = useSelector((state: CartState) => state.cart);
+  const cart = useSelector((state: RootState) => state.cartState.cart);
 
   const showCart = useCallback(() => {
-    dispatch(actionCreators.showCart());
+    dispatch(cartActionCreators.showCart());
   }, [dispatch]);
 
   return (

@@ -1,13 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 
 import Product from "../Product/Product";
 
 import { ProductModel } from "../../models/product";
 import products from "../../data/productsList";
 
+import { RootState } from "../../store/store";
+
 import "./Products.scss";
 
 const Products: React.FC = () => {
+  const productsSection = useRef<HTMLElement>(null!);
+
+  const scrollToProducts = useSelector((state: RootState) => state.scrollState.scrollToProducts);
+
   const [fetchedProducts, setFetchedProducts] = useState<ProductModel[]>([]);
   const [isFetching, setIsFetching] = useState(true);
 
@@ -17,12 +24,18 @@ const Products: React.FC = () => {
     setIsFetching(false);
   }, []);
 
+  useEffect(() => {
+    if (productsSection.current) {
+      productsSection.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [scrollToProducts]);
+
   if (isFetching) {
     return <div>Loading...</div>;
   }
 
   return (
-    <section className="products">
+    <section className="products" ref={productsSection}>
       <div className="products__title">
         <h2>our products</h2>
       </div>
