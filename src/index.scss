@@ -6,7 +6,7 @@
   --mainBlack: #222;
   --mainGrey: #ececec;
   --mainSpacing: 0.1rem;
-  --mainTransition: all 0.3s linear;
+  --mainTransition: all 0.2s linear;
 }
 
 * {
@@ -31,9 +31,21 @@ body {
   border: 1px solid var(--primaryColor);
   transition: var(--mainTransition);
   cursor: pointer;
+
+  &:active {
+    background: transparent;
+    color: var(--primaryColor);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background: transparent;
+      color: var(--primaryColor);
+    }
+  }
 }
 
-.btn:hover {
-  background: transparent;
-  color: var(--primaryColor);
-}
+// .btn:hover {
+//   background: transparent;
+//   color: var(--primaryColor);
+// }
