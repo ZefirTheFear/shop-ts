@@ -31,7 +31,7 @@
 .product__img {
   display: block;
   width: 100%;
-  min-height: 12rem;
+  height: 100%;
   transition: var(--mainTransition);
 }
 .product__img-container:hover .product__img {
