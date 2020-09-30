@@ -1,7 +1,7 @@
-import { Product } from "./../models/product";
+import { ProductModel } from "./../models/product";
 import * as actionTypes from "./actionTypes";
 
-export const addProductToCart = (product: Product): actionTypes.AddProductToCartAction => ({
+export const addProductToCart = (product: ProductModel): actionTypes.AddProductToCartAction => ({
   type: actionTypes.ADD_PRODUCT_TO_CART,
   payload: {
     product: product

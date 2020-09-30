@@ -1,4 +1,4 @@
-import { Product } from "./../models/product";
+import { ProductModel } from "../models/product";
 
 import img1 from "../images/product-1.jpeg";
 import img2 from "../images/product-2.jpeg";
@@ -9,7 +9,7 @@ import img6 from "../images/product-6.jpeg";
 import img7 from "../images/product-7.jpeg";
 import img8 from "../images/product-8.jpeg";
 
-const products: Product[] = [
+const products: ProductModel[] = [
   {
     id: "1",
     title: "queen panel bed",

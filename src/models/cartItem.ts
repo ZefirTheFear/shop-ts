@@ -1,5 +1,5 @@
-import { Product } from "./product";
+import { ProductModel } from "./product";
 
-export interface CartItem extends Product {
+export interface CartItemModel extends ProductModel {
   quantity: number;
 }

@@ -1,11 +1,11 @@
 import cloneDeep from "clone-deep";
 
-import { CartItem } from "../models/cartItem";
+import { CartItemModel } from "../models/cartItem";
 import * as actionTypes from "./actionTypes";
 
-interface CartState {
+export interface CartState {
   isCartShown: boolean;
-  cart: CartItem[];
+  cart: CartItemModel[];
 }
 
 const initialState: CartState = {
@@ -19,13 +19,12 @@ export default (state = initialState, action: actionTypes.ActionType) => {
       const newCart = cloneDeep(state.cart);
       // const cartItem = cloneDeep(action.payload.product) as CartItem;
       // cartItem.quantity = 1;
-      const cartItem: CartItem = { ...cloneDeep(action.payload.product), quantity: 1 };
+      const cartItem: CartItemModel = { ...cloneDeep(action.payload.product), quantity: 1 };
       newCart.push(cartItem);
       localStorage.setItem("cart", JSON.stringify(newCart));
       return {
         ...state,
         cart: newCart
-        // isCartShown: true
       };
 
     case actionTypes.REMOVE_PRODUCT_FROM_CART: {

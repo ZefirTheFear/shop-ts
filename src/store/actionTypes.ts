@@ -1,4 +1,4 @@
-import { Product } from "./../models/product";
+import { ProductModel } from "./../models/product";
 
 export const ADD_PRODUCT_TO_CART = "ADD_PRODUCT_TO_CART";
 export const REMOVE_PRODUCT_FROM_CART = "REMOVE_PRODUCT_FROM_CART";
@@ -10,7 +10,7 @@ export const HIDE_CART = "HIDE_CART";
 
 export interface AddProductToCartAction {
   type: typeof ADD_PRODUCT_TO_CART;
-  payload: { product: Product };
+  payload: { product: ProductModel };
 }
 
 export interface RemoveProductFromCartAction {
